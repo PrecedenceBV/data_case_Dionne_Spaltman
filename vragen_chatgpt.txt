@@ -1,0 +1,46 @@
+write the code to open this csv as a pandas dataframe /Users/precedenceintern/PycharmProjects/data_case_Dionne_Spaltman/data-case/customer_data_comma.csv
+
+What steps should I take to check the quality of the data?
+
+ik wil mijn csv in excel opsplitsen via de komma's, hoe doe ik dat
+
+what are possible steps to do in order to improve the data quality?
+
+These are the things I found: # We have 1000 customers and we have 8 columns
+    # there's barely any missing values, only missing values for name
+    # Minimum age is 5, seems to be very low
+    # Maximum age is 120, seems to way to high
+    # Name's are not actual names, but just numbers
+    # There's only 5 different states and 5 different cities
+
+Can you help me write the code to split the rows with based on a ;. This is what I have so far import pandas as pd
+    # Define the file path
+    file_path = 'data-case/nps_scores.csv'
+    # Load the CSV file into a DataFrame
+    nps_scores = pd.read_csv(file_path)
+    display(nps_scores)
+
+I want to know which journey has the lower NPS score
+
+journey_nps = nps_scores.groupby('journey')['nps_score'].mean().reset_index() I want to sort from lowest to highest
+
+print all the unique values in the journey colomn
+
+I have call_data and nps_data and both have a customer_ID . I want to merge on this, in order to see which journeys have longer waiting times etc.
+
+I also want to look at the call_resolved column which is a yes or no answer. Per journey, look at what these stats are
+
+I'm interested in the stats on order status which is a categorial variable. Can you add it?
+    # Group by journey and calculate stats
+    order_stats = merged_df_order.groupby('Journey_Type').agg(
+        Order_Amount=('Order_Amount', 'mean'),
+        avg_nps_score=('Recommendation_score', 'mean')
+    ).reset_index()
+    # Sort by pct_resolved descending (most resolved first)
+    order_stats = order_stats.sort_values(by='avg_nps_score', ascending=False)
+    display(order_stats)
+
+can you add Payment_method and Product
+
+Based on all of this, help me find creative solutions to improve the nps scores
+
